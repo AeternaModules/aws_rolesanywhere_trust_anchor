@@ -20,7 +20,7 @@ output "rolesanywhere_trust_anchors_notification_settings" {
 }
 output "rolesanywhere_trust_anchors_source" {
   description = "Map of source values across all rolesanywhere_trust_anchors, keyed the same as var.rolesanywhere_trust_anchors"
-  value       = { for k, v in aws_rolesanywhere_trust_anchor.rolesanywhere_trust_anchors : k => v.source if v.source != null && length(v.source) > 0 }
+  value       = { for k, v in aws_rolesanywhere_trust_anchor.rolesanywhere_trust_anchors : k => one(v.source) if v.source != null && length(v.source) > 0 }
 }
 output "rolesanywhere_trust_anchors_tags" {
   description = "Map of tags values across all rolesanywhere_trust_anchors, keyed the same as var.rolesanywhere_trust_anchors"
